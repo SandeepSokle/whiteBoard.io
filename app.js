@@ -40,14 +40,12 @@ app.post("/", urlencoded, function (req, res) {
       res.send(
         `<script>alert("you are not resistered! plaese signup first"); window.location.href = "/signup"; </script>`
       );
- 
     } else {
       // console.log(users);
       if (users == undefined) {
         res.send(
           `<script>alert("you are not resistered! plaese signup first"); window.location.href = "/signup"; </script>`
         );
-  
       } else {
         dataBaseValue = users;
         // console.log(dataBaseValue);
@@ -56,16 +54,19 @@ app.post("/", urlencoded, function (req, res) {
           // console.log("Password match");
           if (data.passKeys == `sokle12`) {
             res.send(
-            `<script>alert("You are Host Now"); window.location.href = "https://hostopenboard.herokuapp.com/"; </script>`);
+              `<script>alert("You are Host Now"); window.location.href = "https://hostopenboard.herokuapp.com/"; </script>`
+            );
             // res.location.href = "https://hostopenboard.herokuapp.com/" ;
           } else {
             res.send(
-              `<script>alert("You are Client Now"); window.location.href = "https://clientopenboard.herokuapp.com/"; </script>`);
-              // res.location.href = "https://clientopenboard.herokuapp.com/" ;
+              `<script>alert("You are Client Now"); window.location.href = "https://clientopenboard.herokuapp.com/"; </script>`
+            );
+            // res.location.href = "https://clientopenboard.herokuapp.com/" ;
           }
         } else {
           res.send(
-            `<script>alert("Wrong Password"); window.location.href = "/signup"; </script>`);
+            `<script>alert("Wrong Password"); window.location.href = "/signup"; </script>`
+          );
         }
       }
     }
@@ -86,32 +87,43 @@ app.post("/signup", urlencoded, function (req, res) {
   ////////////////////check data available or not
   user.findOne({ email: `${data.email}` }, function (err, users) {
     //console.log('hello');
-    
-    if(users == undefined ){
-      const mongoData = new user({
-        _id: new mongoose.Types.ObjectId(),
-        name: "" + data.name,
-        email: "" + data.email,
-        phone: "" + data.number,
-        password: "" + data.password,
-      });
-
-      mongoData
-        .save()
-        .then((result) => {
-          // console.log(result);
-        })
-        .catch((err) => {
-          console.log(err);
+    if (
+      (data.name =
+        "" ||
+        data.email.indexOf("@") == -1 ||
+        ("" + data.number).length() < 10 ||
+        data.password.length() < 8)
+    ) {
+      res.send(
+        `<script>alert("You Entered Invalid Data, Please Try Again"); window.location.href = "/signup"; </script>`
+      );
+    } else {
+      if (users == undefined) {
+        const mongoData = new user({
+          _id: new mongoose.Types.ObjectId(),
+          name: "" + data.name,
+          email: "" + data.email,
+          phone: "" + data.number,
+          password: "" + data.password,
         });
+
+        mongoData
+          .save()
+          .then((result) => {
+            // console.log(result);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         res.send(
           `<script>alert("You are Resistered Successfully Please Login"); window.location.href = "/"; </script>`
         );
-      // res.render("login");
-    } else{
-      res.send(
-        `<script>alert("You are already Resistered Please Login or Forget Password"); window.location.href = "/"; </script>`
-      );
+        // res.render("login");
+      } else {
+        res.send(
+          `<script>alert("You are already Resistered Please Login or Forget Password"); window.location.href = "/"; </script>`
+        );
+      }
     }
   });
 });
@@ -126,21 +138,24 @@ app.post("/forget", urlencoded, function (req, res) {
   // console.log(data.email);
   user.findOne({ email: `${data.email}` }, function (err, users) {
     // console.log(users, err);
-    if(users == undefined){
+    if (users == undefined) {
       // console.log("Notresisterd yet:");
       res.send(
         `<script>alert("You are not Resistered Please Signup"); window.location.href = "/signup"; </script>`
       );
-    } else  {
-        // console.log("resistered!");
-        dataBaseValue = users;
-        let passwordMassage = `Your Data ::::: Name : ${dataBaseValue.name} :::: Email : ${dataBaseValue.email} :::: Phone No. : ${dataBaseValue.phone} :::: Password : ${dataBaseValue.password.split(",")[0]} `;
+    } else {
+      // console.log("resistered!");
+      dataBaseValue = users;
+      let passwordMassage = `Your Data ::::: Name : ${
+        dataBaseValue.name
+      } :::: Email : ${dataBaseValue.email} :::: Phone No. : ${
+        dataBaseValue.phone
+      } :::: Password : ${dataBaseValue.password.split(",")[0]} `;
 
-
-        res.send(
-          `<script>alert("${passwordMassage}"); window.location.href = "/"; </script>`
-        );
-      }
+      res.send(
+        `<script>alert("${passwordMassage}"); window.location.href = "/"; </script>`
+      );
+    }
   });
 });
 
@@ -149,8 +164,8 @@ app.get("/forget", function (req, res) {
   res.render("forget");
 });
 
-let port = process.env.PORT || 5500
-
+// let port = process.env.PORT || 5500
+port = 5500;
 app.listen(port, function () {
   console.log("Server is listening on port 5500");
 });
