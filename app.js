@@ -54,12 +54,12 @@ app.post("/", urlencoded, function (req, res) {
           // console.log("Password match");
           if (data.passKeys == `sokle12`) {
             res.send(
-              `<script>alert("You are Host Now"); window.location.href = "https://hostopenboard.herokuapp.com/"; </script>`
+              `<script>alert("You are Host Now"); window.location.href = "/welcomeHost"; </script>`
             );
             // res.location.href = "https://hostopenboard.herokuapp.com/" ;
           } else {
             res.send(
-              `<script>alert("You are Client Now"); window.location.href = "https://clientopenboard.herokuapp.com/"; </script>`
+              `<script>alert("You are Client Now"); window.location.href = "/welcome"; </script>`
             );
             // res.location.href = "https://clientopenboard.herokuapp.com/" ;
           }
@@ -87,18 +87,31 @@ app.post("/signup", urlencoded, function (req, res) {
   ////////////////////check data available or not
   user.findOne({ email: `${data.email}` }, function (err, users) {
     //console.log('hello');
-    if (
-      (data.name =
-        "" ||
-        data.email.indexOf("@") == -1 ||
-        ("" + data.number).length() < 10 ||
-        data.password.length() < 8)
-    ) {
+    if(users != undefined) {
       res.send(
-        `<script>alert("You Entered Invalid Data, Please Try Again"); window.location.href = "/signup"; </script>`
+        `<script>alert("You are already Resistered Please Login or Forget Password"); window.location.href = "/"; </script>`
+      ); 
+    }else if ((data.name == "")) {
+      res.send(
+        `<script>alert("Enter your name"); window.location.href = "/signup"; </script>`
+      );
+    } else if (data.email.indexOf("@") == -1 ) {
+      res.send(
+        `<script>alert("You Entered Invalid email Address, Please Try Again"); window.location.href = "/signup"; </script>`
+      );
+    } else if (data.number.length < 10) {
+      res.send(
+        `<script>alert("You Entered Invalid Phone number, Please Try Again"); window.location.href = "/signup"; </script>`
+      );
+    } else if (data.password[0].length < 8) {
+      res.send(
+        `<script>alert("Please enter your password in range 8 - 20"); window.location.href = "/signup"; </script>`
+      );
+    } else if (data.password[0] != data.password[1]) {
+      res.send(
+        `<script>alert("Password and Confirm Password does Not Match, Please Try Again"); window.location.href = "/signup"; </script>`
       );
     } else {
-      if (users == undefined) {
         const mongoData = new user({
           _id: new mongoose.Types.ObjectId(),
           name: "" + data.name,
@@ -119,12 +132,7 @@ app.post("/signup", urlencoded, function (req, res) {
           `<script>alert("You are Resistered Successfully Please Login"); window.location.href = "/"; </script>`
         );
         // res.render("login");
-      } else {
-        res.send(
-          `<script>alert("You are already Resistered Please Login or Forget Password"); window.location.href = "/"; </script>`
-        );
       }
-    }
   });
 });
 
@@ -164,8 +172,19 @@ app.get("/forget", function (req, res) {
   res.render("forget");
 });
 
-// let port = process.env.PORT || 5500
-port = 5500;
+app.get("/welcomeHost", function (req, res) {
+  //   console.log(res.query);
+  res.render("welcomeHost");
+});
+
+app.get("/welcome", function (req, res) {
+  //   console.log(res.query);
+  res.render("welcome");
+});
+
+
+let port = process.env.PORT || 5500;
+
 app.listen(port, function () {
   console.log("Server is listening on port 5500");
 });
