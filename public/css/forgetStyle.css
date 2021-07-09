@@ -84,3 +84,76 @@ button:hover{
     justify-content: center;
     align-items: center;
 }
+
+@media only screen and (max-width: 900px) {
+  .forgetBox {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .forgetBox {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .forgetBox {
+    width: 90%;
+  }
+
+  span {
+    width: 70%;
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .forgetBox {
+    width: 90%;
+  }
+  .textBox {
+    height: 20%;
+    font-size: 16px;
+  }
+  span {
+    width: 80%;
+    font-size: 12px;
+  }
+  button {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 150px) {
+  .forgetBox {
+    width: 90%;
+  }
+  .textBox {
+    height: 20%;
+    font-size: 12px;
+  }
+  span {
+    width: 80%;
+    font-size: 12px;
+  }
+  button {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width: 100px) {
+  .forgetBox {
+    width: 100%;
+  }
+  .textBox {
+    font-size: 16px;
+  }
+  span {
+    width: 80%;
+    font-size: 10px;
+  }
+  button {
+    width: 90%;
+  }
+  
+}
