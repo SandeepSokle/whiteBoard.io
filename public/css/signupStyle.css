@@ -82,3 +82,27 @@ button:hover {
   background-color: red;
   color: #f0f0d8;
 }
+
+
+@media only screen and (max-width: 900px) {
+  .signUpContainer {
+    width: 50%;
+    
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .signUpContainer {
+    width: 65%;
+    
+  }
+  
+}
+
+@media only screen and (max-width: 400px) {
+  .signUpContainer {
+    width: 90%;   
+  }
+  
+}
