@@ -108,3 +108,103 @@ display: block!important;
 .isHost{
   width: 40%;
 }
+
+
+
+@media only screen and (max-width: 900px) {
+  .loginBox {
+    width: 60%;
+  }
+  .textContainer {
+    font-size: 24px;
+  }
+
+  .inputContainer input {
+    width: 80%;
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .loginBox {
+    width: 70%;
+  }
+  .textContainer {
+    font-size: 22px;
+  }
+
+  .inputContainer input {
+    width: 90%;
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .loginBox {
+    width: 80%;
+  }
+  .textContainer {
+    font-size: 20px;
+  }
+  .inputContainer input {
+    width: 95%;
+    font-size: 12px;
+  }
+}
+  @media only screen and (max-width: 300px) {
+    .loginBox {
+      width: 90%;
+    }
+    .textContainer {
+      font-size: 12px;
+    }
+    .inputContainer input {
+      width: 95%;
+      font-size: 12px;
+      height: 1.8rem;
+    }
+    .forgetBtn {
+      font-size: 14px;
+    }
+    .signupBtn {
+      font-size: 16px;
+    }
+    .isHost {
+      width: 70%;
+      height: 15%;
+    }
+
+    .signinBtn {
+      width: 70%;
+      height: 20%;
+    }
+  
+  }
+
+  @media only screen and (max-width: 180px) {
+
+    .textContainer {
+      font-size: 9px;
+    }
+    .inputContainer input {
+      width: 95%;
+      font-size: 9px;
+      height: 1.6rem;
+    }
+    .forgetBtn {
+      font-size: 10px;
+    }
+    .signupBtn {
+      font-size: 11px;
+    }
+    .isHost {
+      width: 70%;
+      height: 15%;
+    }
+
+    .signinBtn {
+      width: 70%;
+      height: 20%;
+    }
+  
+  }
