@@ -54,12 +54,12 @@ app.post("/", urlencoded, function (req, res) {
           // console.log("Password match");
           if (data.passKeys == `sokle12`) {
             res.send(
-              `<script>alert("You are Host Now"); window.location.href = "/welcomeHost"; </script>`
+              `<script>alert("You are Host Now"); window.location.href = "https://hostopenboard.herokuapp.com/"; </script>`
             );
             // res.location.href = "https://hostopenboard.herokuapp.com/" ;
           } else {
             res.send(
-              `<script>alert("You are Client Now"); window.location.href = "/welcome"; </script>`
+              `<script>alert("You are Client Now"); window.location.href = "https://clientopenboard.herokuapp.com/"; </script>`
             );
             // res.location.href = "https://clientopenboard.herokuapp.com/" ;
           }
