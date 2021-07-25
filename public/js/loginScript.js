@@ -12,7 +12,7 @@ hostVarificationBtn.addEventListener("click", function (e) {
     e.currentTarget.classList.add("select");
     keyAddIn.classList.add("isActive");
     let div = document.createElement("input");
-    div.type = "text";
+    div.type = "password";
     div.name = "passKeys";
     div.classList.add("hostKeys");
     div.placeholder = "Enter your Keys";
